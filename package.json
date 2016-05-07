@@ -1,13 +1,13 @@
 {
   "name": "houston-elm",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --port 3000"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "css-loader": "^0.23.1",
     "elm-webpack-loader": "^2.0.1",
