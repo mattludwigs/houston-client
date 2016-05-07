@@ -1,0 +1,72 @@
+.user-panel {
+  height: 150px;
+  background-color: $primarylight;
+  position: relative;
+
+  .greeting {
+    color: white;
+    font-weight: 400;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .welcome {
+    color: $primaryVeryLight;
+    font-family: $raleway;
+    font-weight: 200;
+  }
+
+
+  .tabs {
+    position: absolute;
+    bottom: 0;
+    li {
+      height: 30px;
+      text-align: center;
+      list-style: none;
+      display: inline-block;
+      color: white;
+      font-size: .8rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      &:not(:first-child) {
+        margin-left: 30px;
+      }
+
+      a {
+        display: block;
+        position: relative;
+        text-decoration: none;
+        height: 100%;
+        text-align: center;
+        color: $primaryVeryLight;
+        font-size: .8rem;
+        letter-spacing: 2px;
+        transition: color .2s;
+      }
+
+      a.active {
+        position: relative;
+        text-decoration: none;
+        height: 100%;
+        text-align: center;
+        color: white;
+        font-size: .8rem;
+        letter-spacing: 2px;
+      }
+
+      a.active:before {
+        content: "";
+        position: absolute;
+        right: 0;
+        left:0;
+        height: 2px;
+        bottom: 0;
+        background-color: $secondaryBlue;
+      }
+    }
+  }
+
+
+}
