@@ -4,7 +4,7 @@ import Html exposing (..)
 
 import App.Actions as AppActions
 import App.Models as AppModels
-import App.Routing as AppRouting
+import App.Routing as Routing
 
 import AppBar.View as AppBarView
 import UserPanel.View as UserPanelView
@@ -12,16 +12,19 @@ import UserPanel.View as UserPanelView
 import Overview.View as OverViewView
 import NotFound.View as NotFoundView
 
+getCurrentView : Signal.Address AppActions.Action -> AppModels.Model -> Html
+getCurrentView address model =
+  case model.route.route of
+    Routing.IndexRoute ->
+      OverViewView.view address {}
+
+    Routing.NotFoundRoute ->
+      NotFoundView.view address {}
+
 view : Signal.Address AppActions.Action -> AppModels.Model -> Html
 view address model =
   let
-    currentView =
-      case model.route of
-        AppRouting.IndexRoute ->
-          OverViewView.view address {}
-
-        AppRouting.NotFoundRoute ->
-          NotFoundView.view address {}
+    currentView = getCurrentView address model
   in
     div
       []

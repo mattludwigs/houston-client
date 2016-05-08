@@ -3,7 +3,6 @@ module Main where
 import Effects exposing (Effects, Never)
 import Hop
 import Html exposing (..)
-import Hop.Types exposing (newLocation)
 import Task
 import StartApp
 
@@ -17,16 +16,15 @@ import App.View
 
 initialModel : Model
 initialModel =
-  { location = newLocation
-  , route = AppRouting.IndexRoute
+  { routing = AppRouting.initialModel
   }
 
 getAppRouter =
   Hop.new AppRouting.routerConfig
 
-routerSignal : Signal AppActions.Action
+routerSignal : Signal AppRouting.Action
 routerSignal =
-  Signal.map AppActions.ApplyRoute getAppRouter.signal
+  Signal.map AppRouting.ApplyRoute getAppRouter.signal
 
 -- VIEW
 
