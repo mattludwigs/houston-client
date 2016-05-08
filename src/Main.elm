@@ -1,6 +1,7 @@
 module Main where
 
 import Effects exposing (Effects, Never)
+import Hop
 import Html exposing (..)
 import Hop.Types exposing (newLocation)
 import Task
@@ -8,7 +9,7 @@ import StartApp
 
 import App.Actions as AppActions
 import App.Models exposing (Model)
-import App.Routing
+import App.Routing as AppRouting
 import App.Update
 import App.View
 
@@ -17,12 +18,15 @@ import App.View
 initialModel : Model
 initialModel =
   { location = newLocation
-  , route = App.Routing.IndexRoute
+  , route = AppRouting.IndexRoute
   }
+
+getAppRouter =
+  Hop.new AppRouting.routerConfig
 
 routerSignal : Signal AppActions.Action
 routerSignal =
-  Signal.map AppActions.ApplyRoute App.Routing.router.signal
+  Signal.map AppActions.ApplyRoute getAppRouter.signal
 
 -- VIEW
 
@@ -30,7 +34,7 @@ view : Signal.Address AppActions.Action -> Model -> Html
 view address model =
   div
     []
-    [ App.View.view ]
+    [ App.View.view address model ]
 
 -- START APP
 
@@ -54,3 +58,7 @@ main =
 port runner : Signal (Task.Task Never ())
 port runner =
   app.tasks
+
+port routeRunTask : Task.Task () ()
+port routeRunTask =
+  getAppRouter.run
