@@ -1,4 +1,4 @@
-module UserPanel.Nav where
+module Components.UserPanel.Nav where
 
 import Html exposing (..)
 import Html.Attributes exposing (class, href)

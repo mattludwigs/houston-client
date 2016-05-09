@@ -1,4 +1,4 @@
-module AppBar.View where
+module Components.AppBar.View where
 
 import Html exposing (..)
 import Html.Attributes exposing (class, src)

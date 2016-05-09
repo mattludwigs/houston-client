@@ -1,4 +1,4 @@
-module Overview.View where
+module Pages.Overview.View where
 
 import Html exposing (..)
 
@@ -9,4 +9,4 @@ type alias ViewModel =
 
 view : Signal.Address AppActions.PageActions -> ViewModel -> Html
 view address viewModel =
-  text "This is overview paasdfasdfge"
+  text "This is overview Page!"

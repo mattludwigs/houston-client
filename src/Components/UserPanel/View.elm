@@ -1,9 +1,9 @@
-module UserPanel.View where
+module Components.UserPanel.View where
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
 
-import UserPanel.Nav as UserPanelNav
+import Components.UserPanel.Nav as UserPanelNav
 
 type alias UserName = String
 

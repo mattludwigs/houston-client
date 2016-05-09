@@ -6,11 +6,11 @@ import App.Actions exposing (..)
 import App.Models exposing (Model)
 import App.Routing as Routing
 
-import AppBar.View as AppBarView
-import UserPanel.View as UserPanelView
+import Components.AppBar.View as AppBarView
+import Components.UserPanel.View as UserPanelView
 
-import Overview.View as OverViewView
-import NotFound.View as NotFoundView
+import Pages.Overview.View as OverViewView
+import Pages.NotFound.View as NotFoundView
 
 
 view : Signal.Address Action -> Model -> Html
