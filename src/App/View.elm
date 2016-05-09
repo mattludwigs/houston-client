@@ -2,7 +2,7 @@ module App.View where
 
 import Html exposing (..)
 
-import App.Actions exposing (Action)
+import App.Actions exposing (..)
 import App.Models exposing (Model)
 import App.Routing as Routing
 
@@ -26,9 +26,7 @@ page : Signal.Address Action -> Model -> Html
 page address model =
   case model.route of
     Routing.IndexRoute ->
-      div
-        []
-        [ text "overview" ]
+      OverViewView.view (Signal.forwardTo address PageAction) {}
 
     Routing.NotFoundRoute ->
       div
