@@ -9,4 +9,7 @@ type alias ViewModel =
 
 view : Signal.Address AppActions.PageActions -> ViewModel -> Html
 view address viewModel =
-  text "This is overview Page!"
+  div
+    []
+    [ h3 [] [ text "Overview" ]
+    ]

@@ -10,7 +10,7 @@ type alias UserName = String
 tabs : List UserPanelNav.Tab
 tabs =
   [ { title = "Overview", route = "#", isActive = True }
-  , { title = "Expenses", route = "#", isActive = False }
+  , { title = "Expenses", route = "#/app/expenses", isActive = False }
   ]
 
 renderWelcomeMessage : UserName -> Html
