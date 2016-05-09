@@ -1,4 +1,4 @@
-module Pages.Overview.View (..) where
+module Pages.Expenses.View where
 
 import Html exposing (..)
 import Html.Attributes exposing (class)
@@ -14,14 +14,13 @@ type alias ViewModel =
 
 view : Signal.Address AppActions.PageActions -> ViewModel -> Html
 view address viewModel =
-  PageListView.view "Overview" renderList
+  PageListView.view "Expenses" renderList
 
 renderList : Html
 renderList =
   ul
     []
     [ li [] [ renderChecking ]
-    , li [] [ renderEmergancyFund ]
     ]
 
 renderChecking : Html
@@ -31,13 +30,3 @@ renderChecking =
     [ p [] [ text "Name: Checkings" ]
     , p [] [ text "Amoutn: $1200000000000" ]
     ]
-
-renderEmergancyFund : Html
-renderEmergancyFund =
-  div
-    [ ]
-    [ p [] [ text "Name: Emergancy Fund" ]
-    , p [] [ text "Amount: $1200000000000" ]
-    ]
-
-

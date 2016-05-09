@@ -14,10 +14,26 @@ update action model =
       ( model, Effects.map HopAction (navigateTo Routing.config path) )
 
     ApplyRoute ( route, location ) ->
-      ( { model | route = route, location = location }, Effects.none )
+      let
+        activeTab =
+          getActiveTab route
+        _ =
+          Debug.log "Model" activeTab
+      in
+        ( { model | route = route, location = location, activeTab = activeTab }, Effects.none )
 
     HopAction () ->
       ( model, Effects.none )
 
     _ ->
       ( model, Effects.none )
+
+
+getActiveTab : Routing.Route -> String
+getActiveTab route =
+  case route of
+    Routing.ExpensesRoute ->
+      "Expenses"
+
+    _ ->
+      ""

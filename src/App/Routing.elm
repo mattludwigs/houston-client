@@ -31,8 +31,8 @@ matchers =
 
 config : Config Route
 config =
-  { basePath = "/app"
-  , hash = False
+  { basePath = ""
+  , hash = True
   , matchers = matchers
   , notFound = NotFoundRoute
   }

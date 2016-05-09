@@ -3,6 +3,9 @@ module Components.UserPanel.View where
 import Html exposing (..)
 import Html.Attributes exposing (class)
 
+-- APP
+import App.Models exposing (Model)
+
 import Components.UserPanel.Nav as UserPanelNav
 
 type alias UserName = String
@@ -10,7 +13,7 @@ type alias UserName = String
 tabs : List UserPanelNav.Tab
 tabs =
   [ { title = "Overview", route = "#", isActive = True }
-  , { title = "Expenses", route = "#/app/expenses", isActive = False }
+  , { title = "Expenses", route = "#/expenses", isActive = False }
   ]
 
 renderWelcomeMessage : UserName -> Html
