@@ -1,20 +1,23 @@
-module App.Update where
+module App.Update (..) where
 
+import Debug
 import Effects exposing (Effects)
-
-import App.Actions as AppActions
-import App.Models as AppModels
+import Hop.Navigate exposing (navigateTo, setQuery)
+import App.Actions exposing (..)
+import App.Models exposing (Model)
 import App.Routing as Routing
 
--- UPDATE
-
-update : AppActions.Action -> AppModels.Model -> ( AppModels.Model, Effects AppActions.Action )
+update : Action -> Model -> ( Model, Effects Action )
 update action model =
-  case action of
-    AppActions.RoutingAction subAction ->
-      let
-        ( updatedRouting, fx ) =
-          Routing.update subAction model.routing
-      in
-        ( { model | routing = updatedRouting }, Effects.map AppActions.RoutingAction fx )
+  case Debug.log "action" action of
+    NavigateTo path ->
+      ( model, Effects.map HopAction (navigateTo Routing.config path) )
 
+    ApplyRoute ( route, location ) ->
+      ( { model | route = route, location = location }, Effects.none )
+
+    HopAction () ->
+      ( model, Effects.none )
+
+    _ ->
+      ( model, Effects.none )

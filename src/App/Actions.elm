@@ -1,9 +1,10 @@
-module App.Actions where
+module App.Actions (..) where
 
 import Hop.Types exposing (Location)
-
-import App.Routing as AppRouting
+import App.Routing exposing (Route)
 
 type Action
-  = RoutingAction AppRouting.Action
-
+  = HopAction ()
+  | ApplyRoute ( Route, Location )
+  | NavigateTo String
+  | PageAction ()

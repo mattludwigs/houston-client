@@ -2,43 +2,28 @@ module Main where
 
 import Effects exposing (Effects, Never)
 import Hop
+import Hop.Types exposing (Router)
 import Html exposing (..)
 import Task
 import StartApp
 
 import App.Actions as AppActions
-import App.Models exposing (Model)
-import App.Routing as AppRouting
+import App.Models exposing (Model, newAppModel)
+import App.Routing as Routing
 import App.Update
-import App.View
+import App.View exposing (view)
 
--- MODEL
+router : Router Routing.Route
+router =
+  Hop.new Routing.config
 
-initialModel : Model
-initialModel =
-  { routing = AppRouting.initialModel
-  }
-
-getAppRouter =
-  Hop.new AppRouting.routerConfig
-
-routerSignal : Signal AppRouting.Action
+routerSignal : Signal AppActions.Action
 routerSignal =
-  Signal.map AppRouting.ApplyRoute getAppRouter.signal
-
--- VIEW
-
-view : Signal.Address AppActions.Action -> Model -> Html
-view address model =
-  div
-    []
-    [ App.View.view address model ]
-
--- START APP
+  Signal.map AppActions.ApplyRoute router.signal
 
 init : ( Model, Effects AppActions.Action )
 init =
-  ( initialModel, Effects.none )
+  ( newAppModel, Effects.none )
 
 app : StartApp.App Model
 app =
@@ -59,4 +44,4 @@ port runner =
 
 port routeRunTask : Task.Task () ()
 port routeRunTask =
-  getAppRouter.run
+  router.run

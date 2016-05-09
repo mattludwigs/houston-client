@@ -2,8 +2,8 @@ module App.View where
 
 import Html exposing (..)
 
-import App.Actions as AppActions
-import App.Models as AppModels
+import App.Actions exposing (Action)
+import App.Models exposing (Model)
 import App.Routing as Routing
 
 import AppBar.View as AppBarView
@@ -12,23 +12,26 @@ import UserPanel.View as UserPanelView
 import Overview.View as OverViewView
 import NotFound.View as NotFoundView
 
-getCurrentView : Signal.Address AppActions.Action -> AppModels.Model -> Html
-getCurrentView address model =
-  case model.route.route of
+
+view : Signal.Address Action -> Model -> Html
+view address model =
+  div
+    []
+    [ AppBarView.view "Houston" "https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png" "settings"
+    , UserPanelView.view ""
+    , page address model
+    ]
+
+page : Signal.Address Action -> Model -> Html
+page address model =
+  case model.route of
     Routing.IndexRoute ->
-      OverViewView.view address {}
+      div
+        []
+        [ text "overview" ]
 
     Routing.NotFoundRoute ->
-      NotFoundView.view address {}
+      div
+        []
+        [ text "404!" ]
 
-view : Signal.Address AppActions.Action -> AppModels.Model -> Html
-view address model =
-  let
-    currentView = getCurrentView address model
-  in
-    div
-      []
-      [ AppBarView.view "Houston" "https://assets-cdn.github.com/images/icons/emoji/unicode/1f680.png" "settings"
-      , UserPanelView.view ""
-      , currentView
-      ]
