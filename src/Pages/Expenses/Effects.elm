@@ -8,7 +8,6 @@ import Task
 import Pages.Expenses.Models exposing (Expense)
 import Pages.Expenses.Actions as (ExpensesActions)
 
-
 fetchAll : Effects ExpensesActions
 fetchAll =
   Http.get collectionDecoder fetchAllUrl

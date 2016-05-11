@@ -14,10 +14,7 @@ import Pages.Expenses.Models exposing (ExpensesModel)
 
 view : Signal.Address AppActions.PageActions -> ExpensesModel -> Html
 view address model =
-  if List.isEmpty model.expenses then
-    Loading.view
-  else
-    PageListView.view "Expenses" renderList
+  PageListView.view "Expenses" renderList
 
 renderList : Html
 renderList =
