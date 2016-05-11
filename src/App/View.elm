@@ -11,7 +11,10 @@ import Components.AppBar.View as AppBarView
 import Components.UserPanel.View as UserPanelView
 
 import Pages.Overview.View as OverViewView
+
 import Pages.Expenses.View as ExpensesView
+import Pages.Expenses.Models exposing (newExpense)
+
 import Pages.NotFound.View as NotFoundView
 
 view : Signal.Address Action -> Model -> Html
@@ -32,7 +35,7 @@ page address model =
       OverViewView.view (Signal.forwardTo address PageAction) {}
 
     Routing.ExpensesRoute ->
-      ExpensesView.view (Signal.forwardTo address PageAction) {}
+      ExpensesView.view (Signal.forwardTo address PageAction) { newExpense | expenses = model.expenses }
 
     Routing.NotFoundRoute ->
       div

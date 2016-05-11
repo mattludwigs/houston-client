@@ -3,8 +3,10 @@ module App.Actions (..) where
 import Hop.Types exposing (Location)
 import App.Routing exposing (Route)
 
+import Pages.Expenses.Actions exposing (ExpensesActions)
+
 type PageActions
-  = NoOps
+  = ExpensesActions
 
 type Action
   = NoOp

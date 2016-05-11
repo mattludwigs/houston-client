@@ -7,14 +7,17 @@ import Html.Attributes exposing (class)
 import App.Actions as AppActions
 
 -- COMPONENTS
+import Components.Loading.View as Loading
 import Components.PageList.View as PageListView
 
-type alias ViewModel =
-  {}
+import Pages.Expenses.Models exposing (ExpensesModel)
 
-view : Signal.Address AppActions.PageActions -> ViewModel -> Html
-view address viewModel =
-  PageListView.view "Expenses" renderList
+view : Signal.Address AppActions.PageActions -> ExpensesModel -> Html
+view address model =
+  if List.isEmpty model.expenses then
+    Loading.view
+  else
+    PageListView.view "Expenses" renderList
 
 renderList : Html
 renderList =
@@ -27,6 +30,7 @@ renderChecking : Html
 renderChecking =
   div
     [ ]
-    [ p [] [ text "Name: Checkings" ]
-    , p [] [ text "Amoutn: $1200000000000" ]
+    [ p [] [ text "Name: Cick-Fil-A" ]
+    , p [] [ text "Amount: $1200000" ]
+    , p [] [ text "Budget: Food" ]
     ]
