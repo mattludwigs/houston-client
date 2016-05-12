@@ -1,0 +1,29 @@
+.app-bar {
+  height: 60px;
+  background-color: $primary;
+
+  h1 {
+    color: $primaryVeryLight;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: .8rem;
+    letter-spacing: 2px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.material-icons.settings {
+  color: $primaryVeryLight;
+  position: absolute;
+  right: 100px;
+  cursor: pointer;
+  font-size: 18px;
+
+  transition: color .3s;
+
+  &:hover {
+    color: white;
+  }
+}

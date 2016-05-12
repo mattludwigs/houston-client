@@ -1,47 +1,52 @@
-module Main where
+module Main exposing (..)
 
-import Effects exposing (Effects, Never)
-import Hop
-import Hop.Types exposing (Router)
 import Html exposing (..)
-import Task
-import StartApp
+import Html.App as Html
 
-import App.Actions as AppActions
-import App.Models exposing (Model, newAppModel)
-import App.Routing as Routing
-import App.Update
-import App.View exposing (view)
-
-router : Router Routing.Route
-router =
-  Hop.new Routing.config
-
-routerSignal : Signal AppActions.Action
-routerSignal =
-  Signal.map AppActions.ApplyRoute router.signal
-
-init : ( Model, Effects AppActions.Action )
-init =
-  ( newAppModel, Effects.none )
-
-app : StartApp.App Model
-app =
-  StartApp.start
+main =
+  Html.program
     { init = init
-    , inputs = [ routerSignal ]
-    , update = App.Update.update
     , view = view
+    , update = update
+    , subscriptions = subscriptions
     }
 
-main : Signal Html
-main =
-  app.html
+-- MODEL
 
-port runner : Signal (Task.Task Never ())
-port runner =
-  app.tasks
+type alias Model =
+  { username : String
+  }
 
-port routeRunTask : Task.Task () ()
-port routeRunTask =
-  router.run
+-- UPDATE
+
+type Msg 
+  = NoOp
+
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+  case msg of
+    NoOp ->
+      ( model, Cmd.none )
+
+
+-- VIEW
+
+view : Model -> Html Msg
+view model =
+  div
+    []
+    [ text model.username ]
+
+
+-- SUBSCRIPTIONS
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+  Sub.none
+
+
+-- INIT
+
+init : (Model, Cmd Msg)
+init =
+  ( Model "TEST", Cmd.none )

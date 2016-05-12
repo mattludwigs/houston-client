@@ -1,0 +1,64 @@
+.clickable {
+  cursor: pointer;
+}
+
+.container {
+  padding: 15px 100px;
+}
+
+.emoji {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+
+  &.end {
+    justify-content: flex-end;
+  }
+}
+
+.version {
+  position: absolute;
+  right: 0;
+  left:0;
+  bottom: 5px;
+  p {font-size: .7rem; text-align: center; font-weight: 100; color: #aaa; }
+}
+
+.view.list {
+  margin-top: 50px;
+  h3 {
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      height: 80px;
+      color: rgba(0,0,0,0.54);
+      border-left: 2px solid #fcfcfc;
+      transition: background-color .2s, border-color .2s;
+
+      div {
+        padding-left: 13px;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      &:hover {
+        background-color: #e0e0e0;
+        border-color: $red;
+        @extend .clickable;
+      }
+    }
+  }
+}
+
